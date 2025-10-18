@@ -1,0 +1,11 @@
+export const DEFAULT_QUESTION_COUNT = 3;
+export const MINIMUM_QUESTION_COUNT = 1;
+export const MAXIMUM_QUESTION_COUNT = 5;
+export const MINIMUM_QUESTION_LENGTH = 2;
+export const MAXIMUM_QUESTION_LENGTH = 100;
+
+export const DEFAULT_ANSWER_COUNT = 3;
+export const MINIMUM_ANSWER_COUNT = 2;
+export const MAXIMUM_ANSWER_COUNT = 4;
+export const MINIMUM_ANSWER_LENGTH = 2;
+export const MAXIMUM_ANSWER_LENGTH = 30;
