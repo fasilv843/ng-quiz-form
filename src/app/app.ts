@@ -33,7 +33,7 @@ export class App {
     console.log(this.quizForm.controls.questions.controls.at(0)?.controls.answers.errors, 'answers errors');
     if (this.quizForm.valid) {
       const { questions } = this.quizForm.getRawValue();
-      alert(`Form Submitted with ${questions.length} questions :)`);
+      alert(`Form Submitted with ${questions.length} questions`);
       this.quizForm.reset();
       this.quizForm = generateQuizForm()
     } else {
