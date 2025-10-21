@@ -28,9 +28,9 @@ export class App {
   }
 
   onSubmit() {
-    console.log(this.quizForm.getRawValue(), 'quiz form value');
-    console.log(this.quizForm, 'quizForm');
-    console.log(this.quizForm.controls.questions.controls.at(0)?.controls.answers.errors, 'answers errors');
+    // console.log(this.quizForm.getRawValue(), 'quiz form value');
+    // console.log(this.quizForm, 'quizForm');
+    // console.log(this.quizForm.controls.questions.controls.at(0)?.controls.answers.errors, 'answers errors');
     if (this.quizForm.valid) {
       const { questions } = this.quizForm.getRawValue();
       alert(`Form Submitted with ${questions.length} questions`);
