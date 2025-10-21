@@ -6,7 +6,7 @@
     @let questionsControl = quizForm.controls.questions.controls;
     @for (question of questionsControl; track questionIndex; let questionIndex = $index) {
       <div [formGroupName]="questionIndex" class="p-4 border rounded-lg space-y-4">
-        <div class="flex flex-col">
+        <div [id]="'question-' + questionIndex" class="flex flex-col">
             <div class="flex items-center gap-4">
               <input 
                 type="text" 
@@ -46,7 +46,7 @@
             <div formArrayName="answers" class="space-y-4">
                 <h2 class="text-lg font-semibold">Answers</h2>
                 @for (answer of answersControls; track answerIndex; let answerIndex = $index) {
-                    <div [formGroupName]="answerIndex" class="flex flex-col">
+                    <div [formGroupName]="answerIndex" [id]="'question-' + questionIndex + '-answer-' + answerIndex" class="flex flex-col">
                         <div class="flex items-center gap-4">
                             <input 
                                 type="text" 
@@ -85,6 +85,7 @@
                     type="button" 
                     (click)="addAnswer(questionIndex)" 
                     class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition cursor-pointer"
+                    aria-label="Add answer"
                     >Add Answer</button>
             </div>
         }
@@ -94,12 +95,12 @@
             @if (answersErr['minlength']) {
                 @let requiredLength = answersErr['minlength']['requiredLength'];
                 @let actualLength = answersErr['minlength']['actualLength'];
-                <small class="text-red-600">Minimum {{ requiredLength }} answer{{ requiredLength > 1 ? 's' : ''}} required. Current : {{ actualLength }}</small>
+                <small [id]="`answer-count-error-q${questionIndex}`" class="text-red-600">Minimum {{ requiredLength }} answer{{ requiredLength > 1 ? 's' : ''}} required. Current : {{ actualLength }}</small>
             }
             @if (answersErr['maxlength']) {
                 @let requiredLength = answersErr['maxlength']['requiredLength'];
                 @let actualLength = answersErr['maxlength']['actualLength'];
-                <small class="text-red-600">Maximum {{ requiredLength }} answer{{ requiredLength > 1 ? 's' : ''}} allowed. Current : {{ actualLength }}</small>
+                <small [id]="`answer-count-error-q${questionIndex}`" class="text-red-600">Maximum {{ requiredLength }} answer{{ requiredLength > 1 ? 's' : ''}} allowed. Current : {{ actualLength }}</small>
             }
         }
       </div>
@@ -111,12 +112,12 @@
         @if (questionsErr['minlength']) {
           @let requiredLength = questionsErr['minlength']['requiredLength'];
           @let actualLength = questionsErr['minlength']['actualLength'];
-          <small class="text-red-600">Minimum {{ requiredLength }} question{{ requiredLength > 1 ? 's' : ''}} required. Current : {{ actualLength }}</small>
+          <small id="question-count-error" class="text-red-600">Minimum {{ requiredLength }} question{{ requiredLength > 1 ? 's' : ''}} required. Current : {{ actualLength }}</small>
         }
         @if (questionsErr['maxlength']) {
           @let requiredLength = questionsErr['maxlength']['requiredLength'];
           @let actualLength = questionsErr['maxlength']['actualLength'];
-          <small class="text-red-600">Maximum {{ requiredLength }} question{{ requiredLength > 1 ? 's' : ''}} allowed. Current : {{ actualLength }}</small>
+          <small id="question-count-error" class="text-red-600">Maximum {{ requiredLength }} question{{ requiredLength > 1 ? 's' : ''}} allowed. Current : {{ actualLength }}</small>
         }
     }
 
@@ -125,6 +126,7 @@
       type="button" 
       (click)="addQuestion()" 
       class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition cursor-pointer"
+      aria-label="add question"
     >Add Question</button>
   </div>
 
